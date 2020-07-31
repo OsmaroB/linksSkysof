@@ -175,7 +175,8 @@ function ColorRedEdit(tipo){
 
 //FUNCION CUANDO CARGA LA PAGINA
 $(function() {
-    
+    //El link de carga tiene que ser 
+    //apariencia.php?pagina=1&id=usuario
     if(parametroURL('pagina')==1){
         cargarSesion();
         loadUser();
