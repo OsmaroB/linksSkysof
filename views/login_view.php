@@ -58,6 +58,10 @@
                 <div class="up-30"></div>
                 <p class="text-center">
                 <input type="button" class="btn btn-primary" onclick="validar()" value="Ingresar">
+                <input type="button" class="btn btn-outline-dark" value="Registrarse">
+                </p>
+                <p class="text-center">
+                <a href="">Has olvidado tu contraseña?</a>
                 </p>
             </div>
             </div>

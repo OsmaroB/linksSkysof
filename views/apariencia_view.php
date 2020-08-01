@@ -131,8 +131,8 @@
         <script src="../web/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="../controllers/js/crear-link.js"></script>
-        <script src="../controllers/js/autenticacion.js"></script>
         <script src="../controllers/global.js"></script>
+        <script src="../controllers/js/autenticacion.js"></script>
         <script src="../views/nav_view.js"></script>
     </footer>
 </body>

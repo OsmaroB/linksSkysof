@@ -68,6 +68,7 @@
         <script src="../controllers/js/crear-link.js"></script>
         <script src="../controllers/global.js"></script>
         <script src="../views/nav_view.js"></script>
+        <script src="../controllers/js/autenticacion.js"></script>
     </footer>
 </body>
 </html>

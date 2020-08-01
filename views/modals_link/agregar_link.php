@@ -34,6 +34,10 @@
             <label for="txtBackground" class="col-fomr-label">Color del boton</label>
             <input type="color" class="form-control" id="txtBackground">
             <p class="text-center">
+            <input class="form-check-input" type="checkbox" value="" id="transparente">
+            <label class="form-check-label" for="transparente">
+              Transparente
+            </label>
             <button class="btn btn-sm btn-primary" onclick="DarColorFondo('primary');"></button>
             <button class="btn btn-sm btn-secondary" onclick="DarColorFondo('secondary');"></button>
             <button class="btn btn-sm btn-success" onclick="DarColorFondo('success');"></button>
@@ -89,6 +93,10 @@
             <label for="txtBackground" class="col-fomr-label">Color del boton</label>
             <input type="color" class="form-control" id="txtBackgroundEdit">
             <p class="text-center">
+            <input class="form-check-input" type="checkbox" value="" id="transparenteEdit">
+            <label class="form-check-label" for="transparente">
+              Transparente
+            </label>
             <button class="btn btn-sm btn-primary" onclick="DarColorFondoEdit('primary');"></button>
             <button class="btn btn-sm btn-secondary" onclick="DarColorFondoEdit('secondary');"></button>
             <button class="btn btn-sm btn-success" onclick="DarColorFondoEdit('success');"></button>
