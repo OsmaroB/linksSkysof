@@ -9,29 +9,13 @@
     <link rel="stylesheet" href="../web/css/link.css">
     <link rel="stylesheet" href="../web/css/sweetalert.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <?php $_SESSION['id'] = 1; session_start();?>
+    
 
 </head>
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Links Skysof</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="crear-link.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="apariencia.php">Link</a>
-            </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-bar">
             
-            </ul>
-            
-        </div>
         </nav>
     </header>
     
@@ -45,7 +29,7 @@
                         <a class="nav-link active" href="crear-link.php">Agregar link</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="apariencia.php">Apariencia</a>
+                    <a class="nav-link" href="apariencia.php?pagina=1">Apariencia</a>
                     </li>
                 </ul>
                 </div>
@@ -147,6 +131,9 @@
         <script src="../web/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="../controllers/js/crear-link.js"></script>
+        <script src="../controllers/js/autenticacion.js"></script>
+        <script src="../controllers/global.js"></script>
+        <script src="../views/nav_view.js"></script>
     </footer>
 </body>
 </html>

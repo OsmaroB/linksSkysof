@@ -52,8 +52,10 @@ else if ($_GET['tipo'] == 'editRed'){
     $params = array($usuario);
     echo json_encode(Database::getRows($sql, $params));
 }else if($_GET['tipo'] == 'sesion'){
-    echo json_encode(array ('id'=>$_SESSION['id']));
-
+    $usuario = $_GET['email'];
+    $sql = "SELECT `id_usuario`, `nombre`, `apellido`, `alias`, `correo`, `foto`, `color_fondo`, `color_letra`, `tipo_usuario` FROM `usuarios` WHERE `correo` =?";
+    $params = array($usuario);
+    echo json_encode(Database::getRows($sql, $params));
 
 }else if($_GET['tipo'] == 'editarUser'){
     $alias = filter_input(INPUT_POST, 'alias', FILTER_SANITIZE_STRING);
@@ -68,22 +70,27 @@ else if ($_GET['tipo'] == 'editRed'){
 
 
 }else if($_GET['tipo'] == 'subirImg'){
-    $file = $_FILES["archivo"];
-    $nombre = $file["name"];
-    $tipo = $file["type"];
-    $ruta_provicional = $file["tmp_name"];
-    $size = $file["size"];
-    $dimensiones = getimagesize($ruta_provicional);
-    $width = $dimensiones[0];
-    $height = $dimensiones[1];
-    $carpeta = "../../web/img/link/";
-    if($tipo != "image/jpg" && $tipo != "image/jepg" && $tipo != "image/png" && $tipo != "image/gif"){
-        echo("ERROR NO ES UN FORMATO CORRECTO DE IMAGEN");
-        
-    }else{
-        $src = $carpeta.$nombre;
-        move_uploaded_file($ruta_provicional, $src);
-        echo($nombre);
-    }
+   try {
+       //code...
+       $file = $_FILES["archivo"];
+       $nombre = $file["name"];
+       $tipo = $file["type"];
+       $ruta_provicional = $file["tmp_name"];
+       $size = $file["size"];
+       $dimensiones = getimagesize($ruta_provicional);
+       $width = $dimensiones[0];
+       $height = $dimensiones[1];
+       $carpeta = "../../web/img/link/";
+       if($tipo != "image/jpg" && $tipo != "image/jepg" && $tipo != "image/png" && $tipo != "image/gif"){
+           
+       }else{
+           $src = $carpeta.$nombre;
+           move_uploaded_file($ruta_provicional, $src);
+           echo json_encode(array("foto" => $nombre, "mensaje"=> "exito"));
+       }
+   } catch (\Throwable $th) {
+       //throw $th;
+       echo('error');
+   }
 }
 ?>

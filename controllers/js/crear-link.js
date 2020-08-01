@@ -1,5 +1,6 @@
 var idLink = null;
-var idUsuario = 1;
+var imgCargada;
+var idUsuario = sessionStorage.getItem('usuario');
 function cargarSesion(){
 }
 function sweetDelete(id){
@@ -223,32 +224,33 @@ function loadAll(){
             var enlace = field.enlace;
             var tipo = field.id_tipo_enlace;
             $("#liks").append(''
-            +'<div class="container contenedor">'
-                +'<div class="col-12">'
-                    +'<div class=" card text-white bg-light mb-3 shadow-lg p-3 mb-5 bg-white rounded rounded-sm" style="max-width: 400rem;">'
-                    +'<div class="card-body text-dark">'
+            +'<div class="col-12 col-lg-4 contenedor">'
+                +'<div class="card shadow-lg mb-3   bg-white rounded rounded-sm"style="max-width: 40rem;">'
+                    +'<div class="card-body">'
                         +'<div class="row">'
-                            +'<div class="col-10">'
-                            +'<h4 class="card-title text-dark bold">'+tituto+'</h4>'
+                                +'<div class="container">'
+                                    +'<div class="col-12">'
+                                    +'<h4 class="bold">'+tituto+'</h4>'
+                                    +'</div>'
+                                +'</div>'
+                        +'</div>'
+                        +'<div class="row">'
+                            +'<div class="container">'
+                                +'<div class="col-12"> ' 
+                                +'<p class="text-dark">'+enlace+'</p>'
                             +'</div>'
-                            +'</div>'
-                            +'<div class="row">'
-                            +'<div class="col-12">'
-                            +'<p class="text-dark">'+enlace+'</p>'
-                            +'</div>'
-                            +'</div>'
-                            +'<div class="row">'
-                            +'<div class="col-12">'
-                            +' <button type="button" class="btn btn-info btn-sm" onclick="cargarLink('+codigo+','+tipo+')">Editar</button>'
-                            +' <button type="button" class="btn btn-info btn-sm" onclick="copyLink('+codigo+','+tipo+')">Copiar</button>'
-                            +' <button type="button" class="btn btn-info btn-sm" onclick="deleteLink('+codigo+')">Eliminar</button>'
-
-                            +'</div>'
-                            +'</div>'
-                            +'</div>'
-                            +'</div>'
-                            +'</div>'
-                            +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'<div class="">'
+                        +'<div class="">'
+                            +'<button type="button" class="btn btn-info btn-sm m-1" onclick="cargarLink('+codigo+','+tipo+')">Editar</button>'
+                            +'<button type="button" class="btn btn-info btn-sm m-1" onclick="copyLink('+codigo+','+tipo+')">Copiar</button>'
+                            +'<button type="button" class="btn btn-info btn-sm m-1" onclick="deleteLink('+codigo+')">Eliminar</button>'
+                        +'</div>'
+                        +'</div>'
+                    +'</div>'
+                +'</div>'
+            +'</div>'
             +'');
         });
         if (codigo == null) {
@@ -263,7 +265,7 @@ function loadUser(){
     $(".likusuario").remove();
     var url = "../controllers/js/edit-link.php?tipo=usuario&usuario="+idUsuario+"";
     $.getJSON(url, function (result) {
-        console.log(result);
+        
         var codigo = null;
         $.each(result, function (i, field) {
             codigo = field.id_usuario;
@@ -293,6 +295,7 @@ function loadImgUser(){
             document.getElementById("txtAlias").value = field.alias;
             document.getElementById("txtBackgroundText").value = field.color_letra;
             document.getElementById("txtBackground").value = field.color_fondo;
+            imgCargada = field.foto;
         });
         if (foto == 'default.jpg') {
             $("#imagenPerfil").append(''
@@ -660,8 +663,25 @@ function subirImg(){
         data: formData, 
         contentType: false,
         processData: false,
-        success: function (datos) { 
-           editUser(datos);
+        success: function (res) {
+            // alert(res);
+            var mensaje;
+            var foto;
+            try {
+                $.each(JSON.parse(res),function(i,field){
+                    if(i == 'foto'){
+                        foto = field;
+                    }else{
+                        mensaje = field;
+                    }
+                    
+                })
+                if(mensaje == "exito"){
+                    editUser(foto);
+                }
+            } catch (error) {
+                editUser(imgCargada);
+            }
         },
         error: function(){
             alert("RAYOS");
